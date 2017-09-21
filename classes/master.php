@@ -167,7 +167,7 @@ class Master {
 		}
 
 		wp_schedule_event( time(), 'minutes_10', static::$index_cron_name );
-		}
+	}
 
 	protected function init_cli() {
 
@@ -175,7 +175,7 @@ class Master {
 
 			\WP_CLI::add_command( 'icspresso-configuration', __NAMESPACE__ . '\\CLI\\Configuration' );
 			\WP_CLI::add_command( 'icspresso-server',      __NAMESPACE__ . '\\CLI\\Server' );
-	}
+		}
 	}
 
 }
