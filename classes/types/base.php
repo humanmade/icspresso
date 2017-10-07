@@ -4,6 +4,7 @@ namespace Icspresso\Types;
 use Icspresso\API;
 use Icspresso\Logger;
 use Icspresso\Configuration;
+use function Icspresso\init_elastic_search_index;
 
 /**
  * Class Base
@@ -264,6 +265,7 @@ abstract class Base {
 	function reindex_all() {
 
 		$this->delete_all_indexed_items();
+		init_elastic_search_index();
 		$this->set_mapping();
 		$this->index_all();
 	}
@@ -553,7 +555,10 @@ abstract class Base {
 	 */
 	public function delete_all_indexed_items() {
 
-		$this->get_api()->request( array( '/', $this->configuration->get_index_name(), $this->name ), 'DELETE' );
+		$this->get_api()->request( array(
+			'/',
+			$this->configuration->get_index_name(),
+		), 'DELETE' );
 	}
 
 	/**

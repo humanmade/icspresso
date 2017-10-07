@@ -60,8 +60,8 @@ class WP_HTTP extends \ElasticSearch\Transport\HTTP {
 
 		//Normalise GET requests to POST for HTTP spec compliance
 		if ( $body ) {
-			$method = 'GET' === strtoupper( $method ) ? 'POST' : $method;
-			$request_args['body'] = $body;
+			$request_args['method'] = 'GET' === strtoupper( $method ) ? 'POST' : $method;
+			$request_args['body']   = $body;
 		}
 
 		$r = $http->request( $request_url, $request_args );
